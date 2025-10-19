@@ -8,29 +8,38 @@ import UserProfile from "../Components/Profile/UserProfile";
 
 export const router = createBrowserRouter([
     {
-        path:"/",
-        element:<MainLayout></MainLayout>,
-        children:[
+        path: "/",
+        element: <MainLayout></MainLayout>,
+        children: [
             {
-                path:"/",
-                element:<Home></Home>,
-                loader:()=>fetch("/service.json")
+                path: "/",
+                element: <Home></Home>,
+                loader: async () => {
+                    const services = await fetch("/service.json");
+                    const servicesData = await services.json()
+
+                    const feedback = await fetch("/feedback.json");
+                    const feedbackData = await feedback.json()
+
+                    return { servicesData, feedbackData }
+                }
             },
             {
-                path:"/about",
-                element:<About></About>
+                path: "/about",
+                element: <About></About>
             },
             {
-                path:"/all-treatments",
-                element:<AllTreatment></AllTreatment>
+                path: "/all-treatments",
+                element: <AllTreatment></AllTreatment>,
+                loader: () => fetch("/service.json")
             },
             {
-                path:"/my-appontments",
-                element:<MyAppointments></MyAppointments>
+                path: "/my-appontments",
+                element: <MyAppointments></MyAppointments>
             },
             {
-                path:"/profile",
-                element:<UserProfile></UserProfile>
+                path: "/profile",
+                element: <UserProfile></UserProfile>
             }
         ]
     }

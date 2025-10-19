@@ -6,7 +6,7 @@ export default function Banner() {
   <div className="hero-content flex-col lg:flex-row-reverse">
     <img
       src={bannerImg}
-      className="max-w-sm rounded-lg "
+      className=" rounded-lg "
     />
     <div>
       <h1 className="text-5xl font-bold">Box Office News!</h1>
