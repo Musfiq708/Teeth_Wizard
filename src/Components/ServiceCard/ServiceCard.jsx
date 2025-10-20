@@ -1,9 +1,10 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 
 
 export default function ServiceCard({ service }) {
   
-    const { image, treatment, description, cost } = service;
+    const { image, treatment, description, cost,id } = service;
     return (
         <div className='grid grid-flow-col '>
             <div className="card bg-blue-100  shadow-sm">
@@ -21,7 +22,7 @@ export default function ServiceCard({ service }) {
                     <p title={description}>{description.slice(0, 120)}...</p>
 
                     <div className="card-actions">
-                        <button className="btn btn-primary hover:bg-blue-600 hover:border-white hover:font-bold">Checkout More</button>
+                        <NavLink to={`/service-details/${id}`}><button className="btn btn-primary hover:bg-blue-600 hover:border-white hover:font-bold">Checkout More</button></NavLink>
                     </div>
                 </div>
             </div>
