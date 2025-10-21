@@ -25,7 +25,7 @@ export default function Navbar() {
                     </div>
                     <ul
                         tabIndex="-1"
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-white">
+                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-black">
                         {links}
                     </ul>
                 </div>
@@ -37,7 +37,7 @@ export default function Navbar() {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn hover:bg-white hover:text-blue-600 hover:font-bold">Login</a>
+                <NavLink to="/signIn" className="rounded-full"><button className="btn hover:bg-white hover:text-blue-600 hover:font-bold">Login</button></NavLink>
             </div>
         </div>
         </div>

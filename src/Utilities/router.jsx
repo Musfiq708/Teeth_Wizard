@@ -6,6 +6,8 @@ import AllTreatment from "../Components/AllTreatment/AllTreatment";
 import MyAppointments from './../Components/MyAppointments/MyAppointments';
 import UserProfile from "../Components/Profile/UserProfile";
 import ServiceDetails from "../Components/ServiceDetails/ServiceDetails";
+import SignUp from "../Components/SignUp/SignUp";
+import SignIn from "../Components/Sign-In/SignIn";
 
 export const router = createBrowserRouter([
     {
@@ -52,6 +54,14 @@ export const router = createBrowserRouter([
                     const singleData = data.find(d => d.id == params.id);
                     return singleData;
                 }
+            },
+            {
+                path:"/signUp",
+                element:<SignUp></SignUp>
+            },
+            {
+                path:"/signIn",
+                element:<SignIn></SignIn>
             }
         ]
     }
