@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from './../../assets/firebase.config';
 export const authContext = createContext();
 export default function AuthProvider({ routes }) {
@@ -7,6 +7,7 @@ export default function AuthProvider({ routes }) {
     const [user, setUser] = useState(null);
     const handleSignUp = (email, password) => {
         createUserWithEmailAndPassword(auth, email, password)
+            .then(res => signOut(auth))
 
     }
     const handleSignIn = (email, password) => {
@@ -18,6 +19,11 @@ export default function AuthProvider({ routes }) {
     const handleSignOut = () => {
         signOut(auth)
     }
+    const manageProfile = () => {
+        updateProfile(auth.currentUser, {
+
+        })
+    }
     const authInfo = {
         handleSignUp,
         handleSignIn,
@@ -27,12 +33,13 @@ export default function AuthProvider({ routes }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-console.log(currentUser)
+            console.log(currentUser)
             return () => {
                 unsubscribe();
             }
         });
     }, [])
+
     return (
         <div>
             <authContext.Provider value={authInfo}>

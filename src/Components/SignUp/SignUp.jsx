@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { authContext } from '../AuthProvoder/AuthProvider';
 
 export default function SignUp() {
     const { handleSignUp } = useContext(authContext);
+    const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -12,10 +13,11 @@ export default function SignUp() {
         const password = e.target.password.value;
         console.log(name, photo, email, password);
         handleSignUp(email, password);
+        navigate('/signIn');
     }
     return (
         <div>
-            <h1 className='text-center mt-8 text-3xl font-bold'>Register</h1>
+            <h1 className='text-center mt-8 text-3xl font-bold'>Register Sign Up</h1>
             <form onSubmit={handleSubmit} action="">
                 <div class="card bg-base-100 w-full max-w-sm shrink-0 border border-blue-400 mt-10 mx-auto">
                     <div class="card-body">
@@ -36,5 +38,6 @@ export default function SignUp() {
             </form>
             <NavLink to="/signIn" className="block text-center my-2">Already have an Account ?? <span className='text-red-500 hover:text-blue-500'>Sign In </span></NavLink>
         </div>
+
     )
 }
