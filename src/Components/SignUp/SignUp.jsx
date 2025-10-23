@@ -3,16 +3,19 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { authContext } from '../AuthProvoder/AuthProvider';
 
 export default function SignUp() {
-    const { handleSignUp } = useContext(authContext);
+    const { handleSignUp, manageProfile } = useContext(authContext);
     const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
-        const photo = e.target.photourl.value;
+        const image = e.target.photourl.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, photo, email, password);
-        handleSignUp(email, password);
+        console.log(name, image, email, password);
+        handleSignUp(email, password)
+            .then(res => {
+                manageProfile(name, image)
+            })
         navigate('/signIn');
     }
     return (

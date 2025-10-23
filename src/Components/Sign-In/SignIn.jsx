@@ -13,7 +13,6 @@ export default function SignIn() {
         handleSignIn(email, password);
     }
 
-  console.log(handleGoogleLogin)
   return (
 
     <div>

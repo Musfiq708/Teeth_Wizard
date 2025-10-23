@@ -6,8 +6,8 @@ export default function AuthProvider({ routes }) {
     const googleProvider = new GoogleAuthProvider();
     const [user, setUser] = useState(null);
     const handleSignUp = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(res => signOut(auth))
+        return createUserWithEmailAndPassword(auth, email, password)
+            
 
     }
     const handleSignIn = (email, password) => {
@@ -21,14 +21,15 @@ export default function AuthProvider({ routes }) {
     }
     const manageProfile = () => {
         updateProfile(auth.currentUser, {
-
+            displayName: name, photoURL: image
         })
     }
     const authInfo = {
         handleSignUp,
         handleSignIn,
         handleGoogleLogin,
-        handleSignOut
+        handleSignOut,
+        manageProfile
     }
 
     useEffect(() => {
